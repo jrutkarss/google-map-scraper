@@ -7,3 +7,4 @@ urlpatterns = [
     path('download_csv/', views.download_csv, name='download_csv'),
 ]
 
+# from django.urls import path
