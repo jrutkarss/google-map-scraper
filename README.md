@@ -86,6 +86,40 @@ beautifulsoup4>=4.12
 
 ---
 
+## Deployment to Vercel
+
+This project is configured to run on Vercel with the following setup:
+
+### Prerequisites
+- Vercel account
+- GitHub repository linked to Vercel
+
+### Environment Variables
+
+Set these environment variables in your Vercel project settings:
+
+```
+SECRET_KEY=your-secret-key-here
+DEBUG=False
+ALLOWED_HOST=yourdomain.vercel.app
+```
+
+### Deployment Steps
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Set environment variables in Vercel dashboard
+4. Deploy!
+
+The `vercel.json`, `build_files.sh`, and updated Django settings handle the rest automatically.
+
+### Notes
+- Static files are served via WhiteNoise
+- Database uses SQLite by default (stored in `/tmp` on Vercel, resets on redeploy)
+- For persistent data, consider using a PostgreSQL database instead
+
+---
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
