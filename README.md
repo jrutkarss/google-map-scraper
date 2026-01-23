@@ -19,8 +19,8 @@ A Django-based web scraping project designed to extract data from online maps an
 1. Clone the repository:
 
 ```
-git clone https://github.com/your-username/map-scraper.git
-cd map-scraper
+git clone https://github.com/easikinc/google-map-scraper.git
+cd google-map-scraper
 ```
 
 2. Create a Python virtual environment:
