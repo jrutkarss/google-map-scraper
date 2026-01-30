@@ -17,5 +17,5 @@ services:
       - key: PYTHON_VERSION
         value: "3.12.0"
     
-    staticPublicPath: /static
-    staticDir: staticfiles
+    # staticPublicPath: /static
+    # staticDir: staticfiles
