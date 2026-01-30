@@ -31,8 +31,8 @@ SECRET_KEY = config(
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
-    '.vercel.app',
-    '*.vercel.app',
+    '.onrender.com',
+    '*.onrender.com',
     'localhost',
     '127.0.0.1'
 ]
