@@ -1,7 +1,7 @@
 services:
   - type: web
     name: google-map-scraper
-    runtime: python312
+    runtime: python
     plan: free
     
     buildCommand: |
