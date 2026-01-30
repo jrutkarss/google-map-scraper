@@ -14,15 +14,35 @@ def scrape_google_maps(query):
     options.add_argument("--headless")  # Run headless for web app server
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-plugins")
     
-    # Use chromium-browser if available (Render environment), otherwise use webdriver-manager
-    chromium_path = "/usr/bin/chromium-browser"
-    if os.path.exists(chromium_path):
-        options.binary_location = chromium_path
-        driver = webdriver.Chrome(options=options)
-    else:
+    # Try multiple possible Chromium paths
+    chromium_paths = [
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
+        "/snap/bin/chromium",
+        "/usr/bin/google-chrome",
+        "/usr/bin/google-chrome-stable"
+    ]
+    
+    binary_found = False
+    for chromium_path in chromium_paths:
+        if os.path.exists(chromium_path):
+            options.binary_location = chromium_path
+            binary_found = True
+            break
+    
+    # Use found binary or webdriver-manager as fallback
+    try:
+        if binary_found:
+            driver = webdriver.Chrome(options=options)
+        else:
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    except Exception as e:
+        # Last resort: try with chromedriver from PATH
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     search_query = query
     google_maps_url = f"https://www.google.com/maps/search/{search_query.replace(' ', '+')}/"
